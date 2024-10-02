@@ -1,59 +1,80 @@
 <?php
 require "connect.php";
+
+// Keresési feltétel
 $kifejezes = isset($_POST["kifejezes"]) ? $_POST["kifejezes"] : "";
 
-// SQL lekérdezés a szűrt adatok megcountolására
-$count_sql = "SELECT COUNT(*) as total FROM nevjegyek 
-              WHERE (nev LIKE '%{$kifejezes}%' 
-                  OR cegnev LIKE '%{$kifejezes}%' 
-                  OR email LIKE '%{$kifejezes}%')";
-$count_result = mysqli_query($dbconn, $count_sql);
-$total_row = mysqli_fetch_assoc($count_result);
-$osszes = $total_row['total'];
+// Felhasználó által választott névjegykártyák száma
+$mennyit = isset($_GET["mennyit"]) ? (int)$_GET["mennyit"] : 9;
 
-$mennyi = 9;
-$lapok = ceil($osszes / $mennyi);
-$aktualis = isset($_GET['oldal']) ? (int)$_GET['oldal'] : 1;
-$honnan = ($aktualis - 1) * $mennyi;
+// Először összes adat megszámolása a lapozáshoz
+$sql = "SELECT * 
+        FROM nevjegyek
+        WHERE (
+        nev LIKE '%" . $kifejezes . "%'
+        OR cegnev LIKE '%" . $kifejezes . "%'
+        OR email LIKE '%" . $kifejezes . "%'
+        )";
 
-$sql = "SELECT * FROM nevjegyek 
-        WHERE (nev LIKE '%{$kifejezes}%' 
-            OR cegnev LIKE '%{$kifejezes}%' 
-            OR email LIKE '%{$kifejezes}%')
+$result = mysqli_query($dbconn, $sql);
+$osszes = mysqli_num_rows($result);
+
+// Lapozáshoz szükséges adatok
+$lapok = ceil($osszes / $mennyit);
+$aktualis = isset($_GET["oldal"]) ? (int)$_GET["oldal"] : 1;
+$honnan = ($aktualis - 1) * $mennyit;
+
+// SQL lekérdezés lapozással
+$sql = "SELECT * 
+        FROM nevjegyek
+        WHERE (
+        nev LIKE '%" . $kifejezes . "%'
+        OR cegnev LIKE '%" . $kifejezes . "%'
+        OR email LIKE '%" . $kifejezes . "%'
+        )
         ORDER BY nev ASC
-        LIMIT {$honnan}, {$mennyi}";
+        LIMIT $honnan, $mennyit";
+
 $result = mysqli_query($dbconn, $sql);
 
+// SQL hiba ellenőrzése
+if (!$result) {
+    die("SQL Hiba: " . mysqli_error($dbconn));
+}
+
+// Lapozó építése
+$lapozo = '<p>';
+$lapozo .= $aktualis != 1 ? '<a href="?oldal=1&mennyit=' . $mennyit . '">Első</a>' : 'Első';
+$lapozo .= ($aktualis > 1 && $aktualis <= $lapok) ? '<a href="?oldal='.($aktualis-1).'&mennyit='.$mennyit.'"> | Előző</a>' : 'Előző | ';
+
+for ($oldal = 1; $oldal <= $lapok; $oldal++) { 
+    $lapozo .= ($aktualis != $oldal ? '<a href="?oldal=' . $oldal . '&mennyit='.$mennyit.'">' . $oldal . '</a> | ' : $oldal . ' | ');
+}
+
+$lapozo .= $aktualis < $lapok ? '<a href="?oldal='.($aktualis+1).'&mennyit='.$mennyit.'">Következő</a>' : 'Következő';
+$lapozo .= $aktualis != $lapok ? '<a href="?oldal='.$lapok.'&mennyit='.$mennyit.'">Utolsó</a>' : 'Utolsó';
+$lapozo .= '</p>';
+
+// Adatok kiíratása
 if (mysqli_num_rows($result) < 1) {
-    $kimenet = "<article><h2>Nincs ilyen a rendszerben</h2></article>";
+    $kimenet = "<article>
+    <h2>Nincs ilyen találat a rendszerben!</h2>
+    </article>\n";
 } else {
     $kimenet = "";
-    while ($row = mysqli_fetch_assoc($result)){
-        $kimenet .= 
-            "<article>
-                <img src=\"kepek/{$row['foto']}\" alt=\"{$row['foto']}\">
-                <h2>{$row['nev']}</h2>
-                <h3>{$row['cegnev']}</h3>
-            </article>";
+    while ($sor = mysqli_fetch_assoc($result)) {
+        $kimenet .= "<article>
+        <img src=\"kepek/{$sor['foto']}\" alt=\"{$sor['nev']}\" />
+        <h2>{$sor['nev']}</h2>
+        <h3>{$sor['cegnev']}</h3>
+        </article>\n";
     }
 }
-
-// lapozo
-$lapozo = '<p>';
-$lapozo .= $aktualis != 1 ? '<a href="?oldal=1">Első</a>' : 'Első |';
-$lapozo .= ($aktualis > 1) ? '<a href="?oldal=' .($aktualis - 1).'">Előző</a>' : 'Előző |';
-
-for ($oldal = 1; $oldal <= $lapok; $oldal++) {
-    $lapozo .= $aktualis != $oldal ? "<a href=\"?oldal={$oldal}\">{$oldal}</a> |" : $oldal . ' | ';
-}
-
-$lapozo .= ($aktualis < $lapok) ? '<a href="?oldal=' .($aktualis + 1).'">Következő</a> |' : 'Következő |';
-$lapozo .= $aktualis < $lapok ? '<a href="?oldal=' . $lapok . '">Utolsó</a>' : 'Utolsó';
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,14 +82,21 @@ $lapozo .= $aktualis < $lapok ? '<a href="?oldal=' . $lapok . '">Utolsó</a>' : 
     <title>Névjegyzék</title>
 </head>
 <body>
-    <h1>Névjegyzék:</h1>
-    <form action="" method="post">
-        <input type="search" name="kifejezes" id="kifejezes" value="<?php echo htmlspecialchars($kifejezes); ?>">
-        <button type="submit">Keresés</button>
+    <h1>Névjegyzék</h1>
+    <form method="post">
+        <input type="search" name="kifejezes" id="kifejezes" placeholder="Keresés...">
     </form>
-
+    
+    <!-- Lapozó -->
     <div class="container">
-        <?php 
+            <form method="get">
+                <select name="mennyit" id="mennyit" onchange="this.form.submit()">
+                    <option value="9" <?php if ($mennyit == 9) echo 'selected'; ?>>9</option>
+                    <option value="30" <?php if ($mennyit == 30) echo 'selected'; ?>>30</option>
+                    <option value="60" <?php if ($mennyit == 60) echo 'selected'; ?>>60</option>
+                </select>
+            </form>
+        <?php
         print $lapozo;
         print $kimenet;
         ?>
