@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Osztálytársak</title>
+    <style>
+        body {
+            padding: 20px
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            margin-top: 20px
+        }
+
+       thead tr:first-child {
+            background-color: grey;
+            color: white;
+            font-weight: bold;
+        }
+
+       tr:nth-child(even) {
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+
+<body ng-app="classmateApp" ng-controller="classmateController">
+    <h1>{{title}}</h1>
+
+    <input type="text" ng-model="search" placeholder="Osztálytárs keresése...">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sorszám</th>
+                <th>Név</th>
+                <th>Lakhely</th>
+                <th>Hobbi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="classmate in classmates | filter:search">
+                <td>{{ $index +1 }}</td>
+                <td>{{classmate.name}}</td>
+                <td>{{classmate.city}}</td>
+                <td>{{classmate.hobby}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        let app = angular.module('classmateApp', []);
+        app.controller('classmateController', function ($scope, $http) {
+            $scope.title = "Osztály névsor";
+            $scope.classmates = [];
+
+            // classmates.json betöltése és feldolgozása
+            $http.get('classmates.json')
+                .then(function (response) {
+                    $scope.classmates = response.data;
+                })
+                .catch(function (error) {
+                    console.error('Hiba történt a classmates.json betöltése közben:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

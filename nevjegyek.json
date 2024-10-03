@@ -1,0 +1,200 @@
+[
+    {
+        "id": 4,
+        "kep": "nincskep.png",
+        "nev": "Bognár Csanád",
+        "ceg": "Rimai Coalitio",
+        "pozicio": "Bolti pénztáros",
+        "email": "bognar.csanad@freemail.hu",
+        "telefon": "(70) 126-1342"
+    },
+    {
+        "id": 5,
+        "kep": "nincskep.png",
+        "nev": "Katona Taksony",
+        "ceg": "K&H Bank",
+        "pozicio": "Területi közig., igazságszolg. közép vezetője",
+        "email": "taksony_katona@vipmail.hu",
+        "telefon": "(70) 668-3833"
+    },
+    {
+        "id": 6,
+        "kep": "nincskep.png",
+        "nev": "Antal Ilona",
+        "ceg": "Genesis Energy Nyrt.",
+        "pozicio": "Kereskedelmi részegység vezetője",
+        "email": "antal.ilona@hotmail.com",
+        "telefon": "(20) 346-3148"
+    },
+    {
+        "id": 7,
+        "kep": "nincskep.png",
+        "nev": "Barta Kristóf",
+        "ceg": "NIK Központi Autótervező Iroda",
+        "pozicio": "Cipész, cipőkészítő, -javító",
+        "email": "k.barta@gmail.com",
+        "telefon": "(30) 618-9109"
+    },
+    {
+        "id": 8,
+        "kep": "nincskep.png",
+        "nev": "Orbán Anasztáz",
+        "ceg": "HEINEKEN Hungária Sörgyárak Zrt.",
+        "pozicio": "Középfokú oktatási intézmény szakoktatója",
+        "email": "anasztaz.orban@yahoo.com",
+        "telefon": "(20) 470-1547"
+    },
+    {
+        "id": 9,
+        "kep": "nincskep.png",
+        "nev": "Kis Alex",
+        "ceg": "Pécsi Dohánygyár",
+        "pozicio": "Vájár, segédvájár",
+        "email": "kis_alex@gmail.com",
+        "telefon": "(30) 356-1144"
+    },
+    {
+        "id": 10,
+        "kep": "nincskep.png",
+        "nev": "Nagy Aletta",
+        "ceg": "Toti Sport",
+        "pozicio": "Bolti pénztáros",
+        "email": "a.nagy@yahoo.com",
+        "telefon": "(70) 194-8179"
+    },
+    {
+        "id": 11,
+        "kep": "nincskep.png",
+        "nev": "Nemes Eulália",
+        "ceg": "Digic Pictures",
+        "pozicio": "Fegyveres erők felsőfokú foglalkozásai",
+        "email": "eulalia_nemes@gmail.com",
+        "telefon": "(20) 907-7812"
+    },
+    {
+        "id": 12,
+        "kep": "nincskep.png",
+        "nev": "Bakos Emil",
+        "ceg": "Moskovits Sámuel vasöntödéje és gépgyára",
+        "pozicio": "Szállító- és rakodómunkás",
+        "email": "bakos.emil@freemail.hu",
+        "telefon": "(30) 614-7177"
+    },
+    {
+        "id": 13,
+        "kep": "nincskep.png",
+        "nev": "Kis Diána",
+        "ceg": "Concorde Csoport",
+        "pozicio": "Egyéb műszaki foglalkozások",
+        "email": "diana_kis@mailbox.hu",
+        "telefon": "(20) 425-8210"
+    },
+    {
+        "id": 14,
+        "kep": "nincskep.png",
+        "nev": "Nagy Kelemen",
+        "ceg": "Concorde Csoport",
+        "pozicio": "Egyéb szakképzett oktatók, nevelők",
+        "email": "k.nagy@freemail.hu",
+        "telefon": "(20) 549-3060"
+    },
+    {
+        "id": 15,
+        "kep": "nincskep.png",
+        "nev": "Horváth Margit",
+        "ceg": "InfoRádió",
+        "pozicio": "Bútorasztalos",
+        "email": "margit.horvath@hotmail.com",
+        "telefon": "(70) 531-6569"
+    },
+    {
+        "id": 16,
+        "kep": "nincskep.png",
+        "nev": "Kiss Dénes",
+        "ceg": "Goodwill Communications",
+        "pozicio": "Fegyveres erők felsőfokú foglalkozásai",
+        "email": "denes_kiss@hotmail.com",
+        "telefon": "(30) 587-8352"
+    },
+    {
+        "id": 17,
+        "kep": "nincskep.png",
+        "nev": "Szűcs Andrea",
+        "ceg": "Offset és Játékkártya Nyomda Zrt.",
+        "pozicio": "Egyéb műszaki foglalkozások",
+        "email": "andrea.szucs@freemail.hu",
+        "telefon": "(70) 218-2486"
+    },
+    {
+        "id": 18,
+        "kep": "nincskep.png",
+        "nev": "Kocsis Krisztina",
+        "ceg": "Dunai Vasmű",
+        "pozicio": "Szociális munkás",
+        "email": "kocsis.krisztina@gmail.com",
+        "telefon": "(30) 582-3853"
+    },
+    {
+        "id": 19,
+        "kep": "nincskep.png",
+        "nev": "Vincze János",
+        "ceg": "Első Magyar Cérnagyár",
+        "pozicio": "Minőségi, műszaki, biztonsági ellenőr",
+        "email": "vincze_janos@freemail.hu",
+        "telefon": "(20) 107-4404"
+    },
+    {
+        "id": 20,
+        "kep": "nincskep.png",
+        "nev": "Hegedűs György",
+        "ceg": "Cartographia",
+        "pozicio": "Általános orvos",
+        "email": "gyorgy_hegedus@freemail.hu",
+        "telefon": "(30) 653-4082"
+    },
+    {
+        "id": 21,
+        "kep": "nincskep.png",
+        "nev": "Molnár Jenő",
+        "ceg": "Első Nemzeti Közműszolgáltató",
+        "pozicio": "Szövő",
+        "email": "jeno.molnar@citromail.hu",
+        "telefon": "(20) 459-4843"
+    },
+    {
+        "id": 22,
+        "kep": "nincskep.png",
+        "nev": "Sándor Apor",
+        "ceg": "Nézőpont Intézet",
+        "pozicio": "Mosónő, vasalónő",
+        "email": "sandor.apor@freemail.hu",
+        "telefon": "(70) 995-1103"
+    },
+    {
+        "id": 23,
+        "kep": "nincskep.png",
+        "nev": "Halász Rozália",
+        "ceg": "Merck",
+        "pozicio": "Hegesztő, lángvágó",
+        "email": "rozalia.halasz@gmail.com",
+        "telefon": "(20) 766-7351"
+    },
+    {
+        "id": 24,
+        "kep": "nincskep.png",
+        "nev": "Balla Ibolya",
+        "ceg": "Centrum Áruházak",
+        "pozicio": "Kazángépkezelő (vizsgázott kazánfűtő)",
+        "email": "balla.ibolya@gmail.com",
+        "telefon": "(20) 925-4219"
+    },
+    {
+        "id": 25,
+        "kep": "nincskep.png",
+        "nev": "Szabó Virgínia",
+        "ceg": "Raiffeisen Bank (Magyarország)",
+        "pozicio": "Felsőfokú tanintézeti tanár, oktató",
+        "email": "v.szabo@yahoo.com",
+        "telefon": "(20) 915-5028"
+    }
+]

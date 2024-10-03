@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> 
     <link rel="stylesheet" href="stilus.css">
     <title>Document</title>
 </head>
@@ -13,7 +14,40 @@
     </form>
     <!--lapozó-->
     <div class="container">
-        <!--kimenet ->adatbázisból beolvasott adatok-->
+        <input type="text" ng-model="search" placeholder="Keresés...">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sorszám</th>
+                    <th>Név</th>
+                    <th>cégnév</th>
+                    <th>foglalkozás</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="n in nevjegyek | filter:search">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ n.nev }}</td>
+                    <td>{{ n.ceg }}</td>
+                    <td>{{ n.pozicio }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        let app = angular.module('nglApp', []);
+        app.controller('Controller', function ($scope, $http) {
+            $scope.title = "Osztály névsor";
+            $scope.nevjegyek = [];
+            $http.get('nevjegyek.json')
+                .then(function (response) {
+                    $scope.nevjegyek = response.data;
+                })
+                .catch(function (error) {
+                    console.error('Hiba történt a nevjegyek.json betöltése közben:', error);
+                });
+        });
+    </script>
 </body>
 </html>
