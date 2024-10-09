@@ -2,7 +2,7 @@
 require "../connect.php";
 //$kifejezes = isset($_POST["kifejezes"]) ? $_POST["kifejezes"] :"";
 //$rendez  = isset($_POST["rendez"]) ? $_POST["rendez"] :"";
-$rendez = $_POST["rendez"] ?? "nev";
+$rendez = $_GET["rendez"] ?? "nev";
 $kifejezes = $_POST["kifejezes"] ?? "";
 
 $validColumns = ["nev","cegnev","mobil","email"];
