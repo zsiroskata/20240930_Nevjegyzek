@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="contactsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Névjegykártyák</title>
+    <link href="../stilus.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js
+"></script>
+</head>
+<body ng-controller="contactsController">
+    <h1>Lista</h1>
+    <table>
+        <tr>
+            <th>Fotó:</th>
+            <th>Név:</th>
+            <th>Cégnév:</th>
+            <th>Mobil:</th>
+            <th>Email:</th>
+            <th>Műveletek:</th>
+        </tr>
+        <tr ng-repeat = "contact in contacts">
+            <td><img ng-src="../kepek/{{contact.foto}}" alt="{{contact.nev}}" width="50"></td>
+            <td>{{contact.nev}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+<script>
+    const app = angular.module('contactsApp', []);
+    app.controller("contactsController",["$scope","$http", function($scope, $http){
+        $scope.loadContacts = function(){
+            $http.get('RA-get-contact.php')
+        .then(function(response){
+            $scope.contacts = response.data;
+            console.log($scope.contacts);
+        }, function(error){
+            console.error('Adatbetöltési hiba:', error);
+        }
+        );};
+        $scope.loadContacts();
+    }]);
+</script>
+</body>
+</html>
