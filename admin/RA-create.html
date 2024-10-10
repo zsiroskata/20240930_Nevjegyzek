@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stilus.css">
+    <title>Új névjegy felvitele</title>
+</head>
+<body>
+    <h1>Névjegy felvitele</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        <!--hibaüzenetek a usernek, ha valamit rosszul tölt ki-->
+        <?php if(isset($kimenet)) print $kimenet; ?>
+
+        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+        <p><label for="foto">Fotó:</label></p>
+        <input type="file" name="foto" id="foto">
+
+        <p><label for="nev">Név: *</label></p>
+        <input type="text" name="nev" id="nev" value="<?php if(isset($nev)) print $nev;?> ">
+
+        <p><label for="cegnev">Cég név: *</label></p>
+        <input type="text" name="cegnev" id="cegnev" value="<?php if(isset($cegnev)) print $cegnev;?> ">
+
+        <p><label for="mobil">Telefon: *</label></p>
+        <input type="tel" name="mobil" id="mobil" value="<?php if(isset($mobil)) print $mobil;?> ">
+
+        <p><label for="email">Email: *</label></p>
+        <input type="email" name="email" id="email" value="<?php if(isset($email)) print $email;?> ">
+
+        <p><em>*-al jelöl mezők kitöltése kötelező</em></p>
+
+        <input type="submit" value="Rendben" name="rendben" id="rendben">
+        <input type="reset" value="Mégsem">
+    
+    </form>
+</body>
+</html>
