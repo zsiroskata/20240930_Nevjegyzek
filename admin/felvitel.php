@@ -1,4 +1,12 @@
 <?php 
+//munkamenet +
+    session_start();
+    if (!isset($_SESSION['belepett'])) {
+        header('Location: false.html');
+        exit();
+    }
+    
+
 
 if(isset($_POST['rendben'])){
 
